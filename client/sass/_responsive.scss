@@ -1,0 +1,31 @@
+/*
+@media #{$small-only} {
+  .button-wrapper{
+    background-color: transparent !important;
+    width: 50px !important;
+    height: auto !important;
+    span{
+      display:none !important;
+    }
+  }
+  .button-wrapper_collapsed{
+    overflow: visible !important;
+  }
+}
+*/
+/*
+
+@media #{$medium-only} {
+  .button-wrapper{
+    background-color: transparent !important;
+    width: 60px !important;
+    height: auto !important;
+    span{
+      display:none !important;
+    }
+  }
+  .button-wrapper_collapsed{
+    overflow: visible !important;
+  }
+}
+*/

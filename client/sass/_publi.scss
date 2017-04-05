@@ -1,0 +1,50 @@
+// page publi mais pas "encart publi" donc pas de style !
+body.publi{
+  background-color: #fff;
+  &.is--generating{
+    background: #FFF;
+    opacity: 0.7;
+    .div_is_loading{
+      display:block;
+    }
+  }
+  header{
+
+  }
+
+
+  .button-wrapper_upload {
+    margin: $t-margin;
+    &:hover{
+      background-color: $c-bleuvert;
+    }
+  }
+
+
+  .module_infos {
+    display: none;
+  }
+
+  .publi-title {
+  }
+
+  .media {
+    &::before {
+      display: none;
+    }
+
+    .mediaContent {
+    }
+    // hide fav color
+    &::after {
+      display: none;
+    }
+    // hide delete button
+    .button-wrapper_deleteMedia {
+      display: none;
+    }
+    .button-wrapper_flagMedia {
+      display: none;
+    }
+  }
+}

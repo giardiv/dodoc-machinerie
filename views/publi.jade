@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    include templates/head.jade
+  body.publi
+
+    .navbar-container
+      header.navbar
+        +logo()
+        +button( 'dossier', 'isNav')
+        +button( 'projet', 'isNav')
+        +button( 'uploadPubliToFtp', '')
+        +button( 'generatePDF', '')
+
+    .publi_container(data-publidata data-publishown="#{slugPubliName}")
+      include templates/publiTemplate.jade
+
+    .div_is_loading
+    +modals('editPubli')
+    +modals('confirmPdfExported')
+    +modals('exportWebNoConnexion')
+    +modals('exportWebOnConnexion')
+    +modals('exportWebBadFTP')
+    +modals('publiHasBeenSentToFtp')
+    .js--templates
+      include templates/js_templates
+
+    //- //footer
+    include templates/footer.jade
+    script(src='/js/modules/_uploadPubliToFtp.js')
+    script(src='/js/publi.js')

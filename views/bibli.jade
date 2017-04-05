@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/bower_components/dragula.js/dist/dragula.min.css')
+    include templates/head.jade
+
+- if( url.indexOf( 'panneau-de-publications') > 0) {
+  body.bibli(data-publicationPane="open")
+- } else {
+  body.bibli(data-publicationPane)
+- }
+
+    .navbar-container
+      header.navbar
+        +logo()
+        +button( 'dossier', 'isNav')
+        +button( 'projet', 'isNav')
+        +button( 'bibli', 'isNav')
+        .shortcut-button
+          +button('capture', '', 'isCollapsed')
+
+    .biblimontage-container.mainContent
+      .bibli-buffer
+        .bibli-btn
+          +button( 'addText', '', '')
+          +button( 'addLocalMedia', '', '')
+        ul.medias-list.grille_de_medias
+        +snippets('moduleInfos')
+
+      .montage
+        +button( 'publications', '', 'isCollapsed')
+        .montage-list
+          h3.txt-small_info.margin-top_bottom
+            | !{dodoc.lang().listOfPublications}
+          +button( 'createPublication', '', '')
+
+          ul
+        .montage_publi_container(data-publidata)
+
+    +modals('addPubli')
+    +modals('editPubli')
+    +modals('addLocalMedia')
+    +modals('addText')
+    +modals('editMedia')
+
+    .js--templates
+      include templates/js_templates
+
+
+    //- //footer
+    include templates/footer.jade
+
+    script(src="/bower_components/dragula.js/dist/dragula.min.js")
+    script(src='/js/dom_autoscroller.js')
+    script(src='/js/bibli.js')
+
+
+

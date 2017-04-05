@@ -1,0 +1,27 @@
++snippets('moduleInfos')
++modals('moveContentFolder')
+
+script
+  | if (typeof module === 'object') {window.module = module; module = undefined;}
+
+script
+  | var app = {};
+  | app.currentFolder = "!{slugFolderName}";
+  | app.currentProject = "!{slugProjectName}";
+  | app.currentPubli = "!{slugPubliName}";
+  | app.contentDir = "!{contentDir}";
+  | app.currentUserDirPath = "!{currentUserDirPath}";
+  | app.url = "!{url}";
+  | dodoc = {};
+  | dodoc.lang = function() { return !{JSON.stringify(dodoc.lang())} };
+  | dodoc.settings = function() { return !{JSON.stringify(dodoc.settings())} };
+script( src='/js/production/plugins.js')
+script moment.locale("#{dodoc.getCurrentCodeLang()}");
+
+script( src='/js/common.js')
+script( src='/js/modules/_modals.js')
+script( src='/js/_global.js')
+script( src='/js/libs/foundation.js')
+
+script
+  | if (window.module) module = window.module;
