@@ -65,7 +65,12 @@ function init(){
     }, 550);
   }
 
+	// previent l'ouverture du modal au clic du download
+	$('body').on('click', '.button-wrapper_download', function(e){
+		e.stopPropagation();
+	});
  // Ajoute ou enlève un highlight quand on clique sur le drapeau dans les médias
+
   $('body').on('click', '.js--highlightMedia', function(e){
     	e.stopPropagation();
 		var $thisMedia = $(this).closest(".media");

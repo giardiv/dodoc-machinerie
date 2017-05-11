@@ -201,6 +201,11 @@ mixin button(typeOfButton, navOrButton, style)
       .btn.icon
         include ../../client/images/i_flag.svg
 
+  if( typeOfButton === 'download')
+    a(href="#" title="download" class='button-wrapper_download')
+      .btn.icon
+        include ../../client/images/i_download.svg
+
   if( typeOfButton === 'favButton')
     a(href="#" title="Favoris" class='button-wrapper_highlightMedia js--highlightMedia #{defaultClasses}')
       .btn.icon

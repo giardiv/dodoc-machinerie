@@ -44,6 +44,8 @@ var dodocMedia = (function() {
       return _getAudioPathOfProject();
     if( mediaType == 'text')
       return _getTextPathOfProject();
+    if( mediaType == 'volume')
+      return _getVolumePathOfProject();
   }
   function getAnimationPathOfProject() {
     return dodoc.settings().projectAnimationsFoldername;
@@ -55,6 +57,7 @@ var dodocMedia = (function() {
     mediasFolders.push( _getVideoPathOfProject());
     mediasFolders.push( _getAudioPathOfProject());
     mediasFolders.push( _getTextPathOfProject());
+    mediasFolders.push( _getVolumePathOfProject());
     return mediasFolders;
   }
 
@@ -145,11 +148,6 @@ var dodocMedia = (function() {
           pathToFile = path.join( mediaPath, newFileName);
 
           dodocAPI.writeMediaDataToDisk( pathToFile, dodoc.settings().videoext, newMediaData.mediaData.videoData)
-/*
-          .then(function() {
-            return dodocAPI.writeMediaDataToDisk( pathToFile, dodoc.settings().audioext, newMediaData.mediaData.audioData)
-          }, function(error) { reject('Failed to save video: ' + error); })
-*/
           .then(function() {
             return _createMediaMeta(newMediaType, pathToFile, newFileName)
           }, function(error) { reject('Failed to save video: ' + error); })
@@ -169,6 +167,25 @@ var dodocMedia = (function() {
             });
 
           }, function(error) { reject('Failed to make video meta: ' + error); })
+
+          break;
+
+        case 'volume':
+          var mediaPath = _getMediaPath( slugFolderName, slugProjectName, mediaFolder);
+
+          newFileName = dodocAPI.findFirstFilenameNotTaken( newFileName, mediaPath);
+          pathToFile = path.join( mediaPath, newFileName);
+
+          dodocAPI.writeMediaDataToDisk( pathToFile, dodoc.settings().volumeext, newMediaData.mediaData.volumeData)
+          .then(function() {
+            return _createMediaMeta(newMediaType, pathToFile, newFileName)
+          }, function(error) { reject('Failed to save 3d file: ' + error); })
+          .then( function(mdata) {
+            mdata.slugFolderName = slugFolderName;
+            mdata.slugProjectName = slugProjectName;
+            mdata.mediaFolderPath = mediaFolder;
+
+          }, function(error) { reject('Failed to make 3d file meta: ' + error); })
 
           break;
         case 'animation':
@@ -430,6 +447,9 @@ var dodocMedia = (function() {
   }
   function _getAudioPathOfProject() {
     return dodoc.settings().projectAudiosFoldername;
+  }
+  function _getVolumePathOfProject(){
+    return dodoc.settings().projectVolumeFoldername;
   }
 
 

@@ -215,6 +215,10 @@ function makeOneMedia( mediaKey, mdata) {
       $currentMedia = showText( mdata);
       pathOfMedia = app.contentDir+getMediaFiles(mdata).md;
       break;
+    case dodoc.settings().projectVolumeFoldername:
+      $currentMedia = showVolume(mdata);
+      pathOfMedia = app.contentDir+getMediaFiles(mdata).stl;
+      break;
   }
 
   $currentMedia
@@ -316,6 +320,23 @@ function showAudio( mediaDatas) {
 	return mediaItem;
 }
 
+
+function showVolume( mediaDatas) {
+
+  var mediasFilesPath = getMediaFiles(mediaDatas);
+	var mediaItem = $(".js--templates .media_volume").clone(false);
+
+  mediaItem
+    .data('imagesrc_fullsize', mediasFilesPath.img_large)
+    .find( 'img')
+      .attr('src', "/images/preview-stl.png").attr("to",mediasFilesPath.stl)
+    .end()
+    ;
+  mediaItem.children('.button-wrapper_download').attr("href",mediasFilesPath.stl);
+
+	return mediaItem;
+}
+
 function showText( mediaDatas) {
 
   var mediasFilesPath = getMediaFiles(mediaDatas);
@@ -355,6 +376,8 @@ function getMediaFiles(mediaDatas) {
       mediaImages.audio = makeFullPathForProject( mediaFolderPath + '/' + mediaFilename);
     } else if(mediaFilename.toLowerCase().match(".md")) {
       mediaImages.md = makeFullPathForProject( mediaFolderPath + '/' + mediaFilename);
+    } else if(mediaFilename.toLowerCase().match(".stl")){
+      mediaImages.stl = makeFullPathForProject( mediaFolderPath + '/' + mediaFilename);
     }
   });
   return mediaImages;
@@ -802,6 +825,8 @@ function getMediaFolderPathByType( mediaType) {
     return getAudioPathOfProject();
   if( mediaType == 'text')
     return getTextPathOfProject();
+  if( mediaType == 'volume')
+    return getVolumePathOfProject();
 }
 function getPhotoPathOfProject() {
   return dodoc.settings().projectPhotosFoldername;
@@ -817,6 +842,9 @@ function getAudioPathOfProject() {
 }
 function getTextPathOfProject() {
   return dodoc.settings().projectTextsFoldername;
+}
+function getVolumePathOfProject() {
+  return dodoc.settings().projectVolumeFoldername;
 }
 
 function getPathToMediaFile( projectPath, mediasFolderPath, mediaName) {

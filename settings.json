@@ -5,6 +5,7 @@
   "exportedPubliDir" : "publications",
   "metaFileext" : ".txt",
   "videoext" : ".webm",
+  "volumeext" : ".stl",
   "stopMotionext" : ".webm",
   "audioext" : ".wav",
   "folderMetafilename" : "dossier",
@@ -16,6 +17,7 @@
   "projectVideosFoldername" : "03-videos",
   "projectAudiosFoldername" : "04-sons",
   "projectTextsFoldername" : "05-textes",
+  "projectVolumeFoldername" : "06-volume",
 
   "metaDateFormat" : "YYYYMMDD_HHmmss",
   "textEncoding" : "UTF-8",

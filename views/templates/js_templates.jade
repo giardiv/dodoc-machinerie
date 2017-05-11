@@ -5,6 +5,14 @@ li.media.media_image.js--openModal_editMedia(data-ratio data-title data-legende 
       p.mediaData--informations
   +button( 'flag', '', 'isCollapsed')
   +button('deleteMedia', '', 'isCollapsed')
+li.media.media_volume.js--openModal_editMedia(data-ratio data-title data-legende data-highlight=false)
+  +button( 'download', '', '')
+  .mediaContent
+    img
+    .mediaData
+      p.mediaData--informations
+  +button( 'flag', '', 'isCollapsed')
+  +button('deleteMedia', '', 'isCollapsed')
 li.media.media_video.js--openModal_editMedia(data-ratio data-title data-legende data-highlight=false)
   .mediaContent
     video(preload="none" controls)
@@ -151,5 +159,3 @@ li.dossier.small-12.medium-12.large-4.columns(data-statut data-name data-nom)
         h3.title
         .vignette-visuel
           img(src)
-
-

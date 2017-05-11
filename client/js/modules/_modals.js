@@ -32,8 +32,8 @@ var modals = (function() {
         	.on('click', '.js--openModal_editMedia', function(){
           	if($('body').hasClass('publi')) return;
         		var mdata = $(this).data();
-          mdata.nextm = $(this).next('.js--openModal_editMedia');
-          mdata.prevm = $(this).prev('.js--openModal_editMedia');
+            mdata.nextm = $(this).next('.js--openModal_editMedia');
+            mdata.prevm = $(this).prev('.js--openModal_editMedia');
         		modals.createModal('editMedia', mdata);
         	})
         	.on('click', '.js--addText', function(){
@@ -55,6 +55,8 @@ var modals = (function() {
       if($modal.length === 0) alertify.error('ERROR: modal is missing');
       var $modalContent = $modal.next().clone(false);
       $modal.append($modalContent.show());
+      //console.log()
+      $modal.children('.m_modal-content').css("display","block");
 
       if(typeOfModal === 'addFolder') {
         $modal = _initAddFolderModal($modal);
@@ -398,6 +400,14 @@ var modals = (function() {
   					.end()
   					;
   				break;
+  			case dodoc.settings().projectVolumeFoldername:
+  				var $mediaItem = $(".js--templates .media-big_text").clone(false);
+  				$mediaItem
+  					.find('.js--textField')
+  					  .val( "STL")
+  					.end()
+  					;
+  				break;
     	}
 
   		if(mdata.fav)
@@ -597,9 +607,16 @@ var modals = (function() {
                 "audioData" : evt.target.result,
               }
         		  }
-          }
+            }else if(fileName.indexOf( ".stl") !== -1 ||  fileName.indexOf( ".obj") !== -1 ) {
+        			var mediaData = {
+              "mediaType" : "volume",
+              "mediaData" : {
+                "volumeData" : evt.target.result,
+              }
+        		  }
+            }
         		if( mediaData !== undefined)
-        		  sendData.createNewMedia( mediaData);
+        		  sendData.createNewMedia(mediaData);
       		};
       		reader.readAsDataURL(f);
       	}
